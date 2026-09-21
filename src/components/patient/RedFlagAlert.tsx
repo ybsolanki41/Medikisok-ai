@@ -90,7 +90,7 @@ export const RedFlagAlert: React.FC<RedFlagAlertProps> = ({
         <div className="my-6 p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3">
           <ShieldAlert className="w-5 h-5 text-slate-600 shrink-0 mt-0.5" />
           <div className="text-xs text-slate-600 leading-relaxed">
-            <strong className="text-slate-800">Clinical Protocol Standard:</strong> {t.redFlagDisclaimer} MediKiosk does not declare an autonomous medical diagnosis (e.g. Acute Coronary Syndrome). Rather, the triage engine prioritizes your file in Dr. Sharma’s queue so you are evaluated immediately.
+            <strong className="text-slate-800">Clinical Protocol Standard:</strong> {t.redFlagDisclaimer} MediVedah does not declare an autonomous medical diagnosis (e.g. Acute Coronary Syndrome). Rather, the triage engine prioritizes your file in Dr. Sharma’s queue so you are evaluated immediately.
           </div>
         </div>
 

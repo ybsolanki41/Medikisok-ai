@@ -1,6 +1,6 @@
 {
-  "name": "MediKiosk - Clinical Intake & Case-Taking",
-  "description": "AI-powered multimodal patient case-taking kiosk and physician intake summary system for hospital outpatient departments.",
+  "name": "MediVedah - Clinical Intake & Case-Taking",
+  "description": "AI-powered multimodal patient case-taking portal and physician intake summary system for hospital outpatient departments.",
   "requestFramePermissions": ["camera", "microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

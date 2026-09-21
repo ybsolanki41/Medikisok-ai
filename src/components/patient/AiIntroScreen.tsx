@@ -98,7 +98,7 @@ export const AiIntroScreen: React.FC<AiIntroScreenProps> = ({
             </div>
             <div className="flex-1">
               <span className="text-xs font-bold text-teal-900 block mb-1 uppercase tracking-wider">
-                MediKiosk Intake Assistant
+                MediVedah Intake Assistant
               </span>
               <p className="text-sm sm:text-base text-slate-800 font-medium leading-relaxed">
                 "{t.aiIntroSpeech}"

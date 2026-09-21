@@ -110,7 +110,7 @@ export const AdaptiveQuestionsScreen: React.FC<AdaptiveQuestionsScreenProps> = (
       setLocalAnswers(updated);
       onUpdateAnswers(updated);
 
-      // Auto-advance for single-choice to make kiosk snappy
+      // Auto-advance for single-choice to make intake snappy
       setTimeout(() => {
         if (currentStep < questions.length - 1) {
           setCurrentStep(currentStep + 1);

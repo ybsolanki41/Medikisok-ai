@@ -192,7 +192,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
             className="py-4 px-5 rounded-xl border-2 border-teal-600/30 hover:border-teal-600 text-teal-800 bg-teal-50/50 hover:bg-teal-50 font-bold text-sm sm:text-base flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
             <Sparkles className="w-4 h-4 text-teal-600" />
-            <span>Load Fictional Rahul Patel (SIH Demo)</span>
+            <span>Load Fictional Yug Solanki (SIH Demo)</span>
           </button>
         </div>
 

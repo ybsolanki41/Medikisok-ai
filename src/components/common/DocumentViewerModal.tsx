@@ -138,7 +138,7 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
         {/* Modal Footer */}
         <div className="px-6 py-3.5 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
           <span className="text-xs text-slate-500">
-            MediKiosk Document Vault (ABDM Health Record Token #MK-DOC-{document.id})
+            MediVedah Document Vault (ABDM Health Record Token #MK-DOC-{document.id})
           </span>
           <button
             type="button"

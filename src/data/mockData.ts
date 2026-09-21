@@ -43,7 +43,7 @@ export const DEMO_DOCUMENTS: MedicalDocument[] = [
       }
     ],
     rawTextPreview: `STERLING HEALTH CLINIC - DR. SAMEER MEHTA, MD
-Patient: Rahul Patel (42M) | Date: 12-08-2026
+Patient: Yug Solanki (42M) | Date: 12-08-2026
 Rx:
 1. Tab Amlodipine 5mg PO OD morning #30
 2. Tab Metformin 500mg PO BD with breakfast & dinner #60
@@ -99,7 +99,7 @@ Advised: Low sodium diet, 45 min walk, repeat HbA1c in 3 months.`
       }
     ],
     rawTextPreview: `METRO PATHOLOGY LABS - REPORT #MPL-883921
-Patient: Rahul Patel | Age: 42 | Gender: Male | Date: 04-Jun-2026
+Patient: Yug Solanki | Age: 42 | Gender: Male | Date: 04-Jun-2026
 TEST RESULTS:
 - HbA1c (HPLC method): 7.4 % [ABNORMAL] (Ref: <5.7%)
 - eAG: 166 mg/dL [ABNORMAL]
@@ -185,76 +185,647 @@ export const DEMO_TIMELINE: TimelineEvent[] = [
   }
 ];
 
-export const INITIAL_DEMO_PATIENT: PatientCase = {
-  profile: {
-    id: 'MK-10482',
-    name: 'Rahul Patel',
-    age: 42,
-    gender: 'Male',
-    preferredLanguage: 'gu',
-    abhaId: '91-4820-1928-3019',
-    contactNumber: '+91 98250 14820',
-    emergencyContact: 'Meera Patel (Spouse) - +91 98250 14821'
+// Additional Document Sets for Clinic Queue Patients
+export const DOCUMENTS_AAKARSH: MedicalDocument[] = [
+  {
+    id: 'doc-ak-1',
+    title: 'Pulmonary Outpatient Prescription & Spirometry Order',
+    type: 'Prescription',
+    date: '14 Sep 2026',
+    facility: 'City Chest & Allergy Clinic',
+    doctor: 'Dr. Sneha Roy, MD (Pulmonary Medicine)',
+    thumbnailColor: 'sky',
+    extractedMedicines: [
+      'Levocetirizine 5 mg - 1 tab OD at night for 15 days',
+      'Montelukast 10 mg - 1 tab OD at bedtime for 15 days',
+      'Budesonide 200 mcg Inhaler - 2 puffs twice daily with spacer'
+    ],
+    extractedDiagnosis: ['Allergic Bronchitis', 'Mild Persistent Asthma'],
+    extractedInvestigations: [
+      {
+        id: 'inv-ak-spo2',
+        testName: 'Resting SpO2 (Room Air)',
+        value: '98',
+        unit: '%',
+        referenceRange: '95 - 100',
+        abnormal: false,
+        clinicalNote: 'Adequate resting room air oxygenation'
+      }
+    ],
+    rawTextPreview: `CITY CHEST CLINIC - DR. SNEHA ROY, MD
+Patient: Aakarsh Dubey (36M) | Date: 14-Sep-2026
+Dx: Allergic Bronchitis with Bronchospasm
+Rx:
+1. Tab Levocetirizine 5mg PO OD at night #15
+2. Tab Montelukast 10mg PO OD night #15
+3. Budesonide Inhaler 200mcg 2 puffs BD with spacer #1 canister
+Advised: Avoid dust/pollen exposure, peak flow monitoring.`
   },
-  chiefComplaint: 'Chest discomfort',
-  adaptiveAnswers: {
-    onset: 'Yesterday',
-    character: 'Pressure / Tightness',
-    aggravating: 'Activity',
-    associated: ['Shortness of breath', 'Sweating']
+  {
+    id: 'doc-ak-2',
+    title: 'Comprehensive Allergy & Hemogram Panel',
+    type: 'Laboratory Report',
+    date: '10 Sep 2026',
+    facility: 'Metro Diagnostics & Clinical Pathology Center',
+    doctor: 'Dr. Ananya Iyer, MD (Pathology)',
+    thumbnailColor: 'amber',
+    extractedMedicines: [],
+    extractedDiagnosis: ['Peripheral Eosinophilia', 'Atopic Diathesis'],
+    extractedInvestigations: [
+      {
+        id: 'inv-ak-aec',
+        testName: 'Absolute Eosinophil Count (AEC)',
+        value: '580',
+        unit: '/uL',
+        referenceRange: '40 - 450',
+        abnormal: true,
+        clinicalNote: 'Elevated eosinophil count indicating allergic inflammatory airway response'
+      },
+      {
+        id: 'inv-ak-eos',
+        testName: 'Eosinophils %',
+        value: '8.2',
+        unit: '%',
+        referenceRange: '1.0 - 6.0',
+        abnormal: true,
+        clinicalNote: 'Moderate peripheral eosinophilia'
+      },
+      {
+        id: 'inv-ak-tlc',
+        testName: 'Total Leukocyte Count (TLC)',
+        value: '8,400',
+        unit: '/cumm',
+        referenceRange: '4,000 - 11,000',
+        abnormal: false,
+        clinicalNote: 'Normal total white blood cell count'
+      },
+      {
+        id: 'inv-ak-ige',
+        testName: 'Serum Total IgE',
+        value: '310',
+        unit: 'IU/mL',
+        referenceRange: '< 100',
+        abnormal: true,
+        clinicalNote: 'Elevated atopic immunoglobulin marker'
+      }
+    ],
+    rawTextPreview: `METRO PATHOLOGY LABS - REPORT #MPL-904128
+Patient: Aakarsh Dubey | Age: 36 | Gender: Male | Date: 10-Sep-2026
+INVESTIGATIONS:
+- Absolute Eosinophil Count (AEC): 580 /uL [ABNORMAL] (Ref: 40-450)
+- Eosinophils %: 8.2 % [ABNORMAL] (Ref: 1-6)
+- Total Leukocyte Count (TLC): 8,400 /cumm (Ref: 4000-11000)
+- Serum Total IgE: 310 IU/mL [ABNORMAL] (Ref: <100)`
+  }
+];
+
+export const DOCUMENTS_VAIBHAV: MedicalDocument[] = [
+  {
+    id: 'doc-vb-1',
+    title: 'Digital Radiography - Both Knees Standing AP & Lateral',
+    type: 'Radiology',
+    date: '02 Sep 2026',
+    facility: 'Apex Advanced Imaging & Diagnostic Center',
+    doctor: 'Dr. Vikramaditya Joshi, DMRD (Radiodiagnosis)',
+    thumbnailColor: 'emerald',
+    extractedMedicines: [],
+    extractedDiagnosis: [
+      'Bilateral Knee Primary Osteoarthritis (Grade 2 Kellgren-Lawrence)',
+      'Medial Compartment Joint Space Narrowing'
+    ],
+    extractedInvestigations: [
+      {
+        id: 'inv-vb-med',
+        testName: 'Medial Joint Space',
+        value: 'Narrowed (R > L)',
+        unit: 'Grading',
+        referenceRange: 'Symmetric & Preserved',
+        abnormal: true,
+        clinicalNote: 'Grade 2 medial compartment narrowing with small marginal tibial osteophytes'
+      },
+      {
+        id: 'inv-vb-scler',
+        testName: 'Subchondral Sclerosis',
+        value: 'Present (Mild)',
+        unit: 'Qualitative',
+        referenceRange: 'Absent',
+        abnormal: true,
+        clinicalNote: 'Mild tibial plateau sclerosis, no joint effusion or loose bodies'
+      }
+    ],
+    rawTextPreview: `APEX DIAGNOSTIC IMAGING - X-RAY REPORT #RAD-4491
+Patient: Vaibhav Upadyey (58M) | Date: 02-Sep-2026
+Examination: Digital X-Ray Both Knees (Standing AP & Lateral Views)
+Findings:
+1. Significant asymmetric narrowing of medial tibiofemoral joint compartments bilaterally (Right > Left).
+2. Small marginal osteophytes noted along medial tibial plateau and patellar poles.
+3. Mild subchondral sclerosis present. No joint effusion or acute cortical fracture.
+Impression: Bilateral Primary Osteoarthritis Knee (Kellgren-Lawrence Grade 2).`
   },
-  isPriorityRedFlag: true,
-  priorityReason: 'Acute retrosternal chest pressure worsening with exertion, accompanied by diaphoresis and exertional shortness of breath in a patient with diagnosed hypertension and type 2 diabetes.',
-  existingConditions: ['Hypertension (Stage 2)', 'Type 2 Diabetes Mellitus'],
-  previousSurgeries: ['Laparoscopic Cholecystectomy (Jan 2026)', 'Appendectomy (2014)'],
-  currentMedications: [
-    {
-      name: 'Amlodipine',
-      dosage: '5 mg',
-      frequency: 'Once daily (morning)',
-      indication: 'Hypertension'
+  {
+    id: 'doc-vb-2',
+    title: 'Metabolic & Rheumatology Serum Panel',
+    type: 'Laboratory Report',
+    date: '28 Aug 2026',
+    facility: 'Metro Diagnostics & Clinical Pathology Center',
+    doctor: 'Dr. Ananya Iyer, MD (Pathology)',
+    thumbnailColor: 'amber',
+    extractedMedicines: [],
+    extractedDiagnosis: ['Hyperuricemia', 'Mild Inflammatory Elevation'],
+    extractedInvestigations: [
+      {
+        id: 'inv-vb-uric',
+        testName: 'Serum Uric Acid',
+        value: '7.8',
+        unit: 'mg/dL',
+        referenceRange: '3.5 - 7.2',
+        abnormal: true,
+        clinicalNote: 'Elevated uric acid levels - correlate for crystal arthropathy vs gouty overlap'
+      },
+      {
+        id: 'inv-vb-esr',
+        testName: 'Erythrocyte Sedimentation Rate (ESR)',
+        value: '24',
+        unit: 'mm/1st hr',
+        referenceRange: '< 20',
+        abnormal: true,
+        clinicalNote: 'Mild chronic inflammatory elevation'
+      },
+      {
+        id: 'inv-vb-ca',
+        testName: 'Serum Calcium',
+        value: '9.4',
+        unit: 'mg/dL',
+        referenceRange: '8.8 - 10.2',
+        abnormal: false,
+        clinicalNote: 'Normal physiological calcium homeostasis'
+      }
+    ],
+    rawTextPreview: `METRO PATHOLOGY LABS - REPORT #MPL-891044
+Patient: Vaibhav Upadyey | Age: 58 | Gender: Male | Date: 28-Aug-2026
+TEST RESULTS:
+- Serum Uric Acid: 7.8 mg/dL [ABNORMAL] (Ref: 3.5 - 7.2)
+- ESR (Westergren): 24 mm/1st hr [ABNORMAL] (Ref: < 20)
+- Rheumatoid Factor (RF Quantitative): < 10 IU/mL [NEGATIVE]
+- Serum Calcium: 9.4 mg/dL (Ref: 8.8 - 10.2)`
+  }
+];
+
+export const DOCUMENTS_AKASH: MedicalDocument[] = [
+  {
+    id: 'doc-akash-1',
+    title: 'Upper Abdominal Ultrasonography (USG)',
+    type: 'Radiology',
+    date: '18 Sep 2026',
+    facility: 'Apex Advanced Imaging & Diagnostic Center',
+    doctor: 'Dr. Vikramaditya Joshi, DMRD (Radiodiagnosis)',
+    thumbnailColor: 'sky',
+    extractedMedicines: [],
+    extractedDiagnosis: ['Mild Acute Gastric Congestion', 'Normal Gallbladder & Biliary System'],
+    extractedInvestigations: [
+      {
+        id: 'inv-aks-gb',
+        testName: 'Gallbladder & CBD',
+        value: 'Normal',
+        unit: 'Qualitative',
+        referenceRange: 'Calculus-free',
+        abnormal: false,
+        clinicalNote: 'No gallstones, normal wall thickness (2.1 mm), CBD caliber 4 mm'
+      },
+      {
+        id: 'inv-aks-rug',
+        testName: 'Gastric Antral Mucosa',
+        value: 'Prominent Rugae',
+        unit: 'Qualitative',
+        referenceRange: 'Normal',
+        abnormal: true,
+        clinicalNote: 'Mild prominent antral folds consistent with acute dyspepsia/gastritis'
+      }
+    ],
+    rawTextPreview: `APEX DIAGNOSTIC IMAGING - USG REPORT #USG-7712
+Patient: Akash (24M) | Date: 18-Sep-2026
+Examination: Real-time Ultrasound Whole Abdomen
+Findings:
+- Liver: Normal size and echotexture, no focal lesions.
+- Gallbladder: Well distended, thin-walled, no calculi or sludge.
+- Pancreas: Visualized portions normal, main duct not dilated.
+- Spleen and Kidneys: Normal morphology and cortico-medullary differentiation.
+- Stomach: Fluid and gas filled with mild prominent antral mucosal rugae.
+Impression: Mild acute gastritis changes. No cholelithiasis or acute pancreatitis.`
+  },
+  {
+    id: 'doc-akash-2',
+    title: 'Emergency Serum Enzymes & Liver Function Panel',
+    type: 'Laboratory Report',
+    date: '18 Sep 2026',
+    facility: 'Civil Hospital Emergency Biochemistry Laboratory',
+    doctor: 'Dr. R. K. Patel, MD (Biochemistry)',
+    thumbnailColor: 'emerald',
+    extractedMedicines: [],
+    extractedDiagnosis: ['Normal Pancreatic Enzymes', 'Acute Gastritis / Reflux'],
+    extractedInvestigations: [
+      {
+        id: 'inv-aks-amy',
+        testName: 'Serum Amylase',
+        value: '52',
+        unit: 'U/L',
+        referenceRange: '28 - 100',
+        abnormal: false,
+        clinicalNote: 'Normal pancreatic enzyme - pancreatitis ruled out'
+      },
+      {
+        id: 'inv-aks-lip',
+        testName: 'Serum Lipase',
+        value: '28',
+        unit: 'U/L',
+        referenceRange: '13 - 60',
+        abnormal: false,
+        clinicalNote: 'Normal pancreatic lipase activity'
+      },
+      {
+        id: 'inv-aks-bili',
+        testName: 'Total Serum Bilirubin',
+        value: '0.8',
+        unit: 'mg/dL',
+        referenceRange: '0.2 - 1.2',
+        abnormal: false,
+        clinicalNote: 'Normal hepatic excretory function'
+      }
+    ],
+    rawTextPreview: `CIVIL HOSPITAL BIOCHEMISTRY LAB - STAT REPORT
+Patient: Akash | Age: 24 | Gender: Male | Date: 18-Sep-2026
+RESULTS:
+- Serum Amylase: 52 U/L (Normal 28-100)
+- Serum Lipase: 28 U/L (Normal 13-60)
+- Total Bilirubin: 0.8 mg/dL (Normal 0.2-1.2)
+- SGPT / ALT: 26 U/L (Normal <45)
+- Random Blood Glucose: 98 mg/dL (Normal <140)`
+  }
+];
+
+export const DEMO_PATIENT_CASES: PatientCase[] = [
+  // 1st Patient: YUG SOLANKI
+  {
+    profile: {
+      id: 'MK-10482',
+      name: 'YUG SOLANKI',
+      age: 42,
+      gender: 'Male',
+      preferredLanguage: 'en',
+      abhaId: '91-4820-1928-3019',
+      contactNumber: '+91 98250 14820',
+      emergencyContact: 'Pooja Solanki (Spouse) - +91 98250 14821'
     },
-    {
-      name: 'Metformin',
-      dosage: '500 mg',
-      frequency: 'Twice daily with meals',
-      indication: 'Type 2 Diabetes'
-    }
-  ],
-  drugAllergies: ['No known drug allergies (NKDA)'],
-  familyHistory: ['Father: Coronary artery disease / MI at age 56', 'Mother: Type 2 diabetes mellitus'],
-  personalHistory: [
-    'Non-smoker',
-    'No alcohol consumption',
-    'Vegetarian diet with moderate dairy intake',
-    'Sedentary desk profession (IT Operations)'
-  ],
-  reviewOfSystems: [
-    'Cardiovascular: Exertional chest tightness, diaphoresis reported.',
-    'Respiratory: Mild dyspnea on walking uphill.',
-    'Gastrointestinal: No nausea, vomiting, or epigastric burning.',
-    'Neurological: No dizziness or syncope.'
-  ],
-  ayushAssessment: {
-    prakriti: 'Pitta-Kapha (Predominant Pitta with secondary Kapha)',
-    vikriti: 'Vata aggravation (Prana & Vyana Vayu imbalance)',
-    agni: 'Mandagni (Sub-optimal digestive fire)',
-    koshta: 'Madhyama (Regular, non-constipated)',
-    aharaShakti: 'Madhyama (Moderate dietary capacity)',
-    vaya: 'Madhyama Vaya (Pravriddha - 42 years)',
-    satmya: 'Mishra Satmya (Mixed regional vegetarian adaptation)',
-    satva: 'Madhyama Satva (Moderate mental fortitude)'
+    chiefComplaint: 'Chest discomfort (Exertional pressure)',
+    adaptiveAnswers: {
+      onset: 'Yesterday',
+      character: 'Pressure / Tightness',
+      aggravating: 'Activity',
+      associated: ['Shortness of breath', 'Sweating']
+    },
+    isPriorityRedFlag: true,
+    priorityReason: 'Acute retrosternal chest pressure worsening with exertion, accompanied by diaphoresis and exertional shortness of breath in a patient with diagnosed hypertension and type 2 diabetes.',
+    existingConditions: ['Hypertension (Stage 2)', 'Type 2 Diabetes Mellitus'],
+    previousSurgeries: ['Laparoscopic Cholecystectomy (Jan 2026)', 'Appendectomy (2014)'],
+    currentMedications: [
+      {
+        name: 'Amlodipine',
+        dosage: '5 mg',
+        frequency: 'Once daily (morning)',
+        indication: 'Hypertension'
+      },
+      {
+        name: 'Metformin',
+        dosage: '500 mg',
+        frequency: 'Twice daily with meals',
+        indication: 'Type 2 Diabetes'
+      }
+    ],
+    drugAllergies: ['No known drug allergies (NKDA)'],
+    familyHistory: ['Father: Coronary artery disease / MI at age 56', 'Mother: Type 2 diabetes mellitus'],
+    personalHistory: [
+      'Non-smoker',
+      'No alcohol consumption',
+      'Vegetarian diet with moderate dairy intake',
+      'Sedentary desk profession (IT Operations)'
+    ],
+    reviewOfSystems: [
+      'Cardiovascular: Exertional chest tightness, diaphoresis reported.',
+      'Respiratory: Mild dyspnea on walking uphill.',
+      'Gastrointestinal: No nausea, vomiting, or epigastric burning.',
+      'Neurological: No dizziness or syncope.'
+    ],
+    ayushAssessment: {
+      prakriti: 'Pitta-Kapha (Predominant Pitta with secondary Kapha)',
+      vikriti: 'Vata aggravation (Prana & Vyana Vayu imbalance)',
+      agni: 'Mandagni (Sub-optimal digestive fire)',
+      koshta: 'Madhyama (Regular, non-constipated)',
+      aharaShakti: 'Madhyama (Moderate dietary capacity)',
+      vaya: 'Madhyama Vaya (Pravriddha - 42 years)',
+      satmya: 'Mishra Satmya (Mixed regional vegetarian adaptation)',
+      satva: 'Madhyama Satva (Moderate mental fortitude)'
+    },
+    documents: DEMO_DOCUMENTS,
+    timeline: DEMO_TIMELINE,
+    consentGranted: true,
+    consentTimestamp: '17 Sep 2026, 09:12 AM IST',
+    consentPurpose: 'Pre-consultation clinical history capture, OCR document structuring, and physician intake review under ABDM guidelines.',
+    submissionStatus: 'submitted',
+    tokenNumber: 'A-14',
+    doctorNotes: 'Patient present at intake with acute exertional chest pressure. Vitals flagged for immediate triage. Instructed nursing station to obtain STAT 12-lead ECG and bedside troponin.',
+    physicianConfirmedDate: undefined
   },
-  documents: DEMO_DOCUMENTS,
-  timeline: DEMO_TIMELINE,
-  consentGranted: true,
-  consentTimestamp: '17 Sep 2026, 09:12 AM IST',
-  consentPurpose: 'Pre-consultation clinical history capture, OCR document structuring, and physician intake review under ABDM guidelines.',
-  submissionStatus: 'submitted',
-  tokenNumber: 'A-14',
-  doctorNotes: 'Patient present at Kiosk with acute exertional chest pressure. Vitals flagged for immediate triage. Instructed nursing station to obtain STAT 12-lead ECG and bedside troponin.',
-  physicianConfirmedDate: undefined
-};
+
+  // 2nd Patient: AAKARSH DUBEY
+  {
+    profile: {
+      id: 'MK-10483',
+      name: 'AAKARSH DUBEY',
+      age: 36,
+      gender: 'Male',
+      preferredLanguage: 'en',
+      abhaId: '91-3829-4412-8871',
+      contactNumber: '+91 98765 23412',
+      emergencyContact: 'Neha Dubey (Spouse) - +91 98765 23413'
+    },
+    chiefComplaint: 'Persistent dry cough & low fever (5 days)',
+    adaptiveAnswers: {
+      onset: '5 days ago',
+      character: 'Spasmodic nocturnal dry cough',
+      aggravating: 'Cold air, exposure to dust and air conditioning',
+      associated: ['Evening low-grade feverishness', 'Mild chest soreness from coughing', 'Fatigue']
+    },
+    isPriorityRedFlag: false,
+    priorityReason: '',
+    existingConditions: ['Allergic Bronchitis', 'Mild Seasonal Asthma'],
+    previousSurgeries: ['None reported'],
+    currentMedications: [
+      {
+        name: 'Levocetirizine',
+        dosage: '5 mg',
+        frequency: 'Once daily at bedtime',
+        indication: 'Allergic Rhinitis / Cough'
+      },
+      {
+        name: 'Montelukast',
+        dosage: '10 mg',
+        frequency: 'Once daily at night',
+        indication: 'Airway hyper-reactivity'
+      },
+      {
+        name: 'Budesonide Inhaler',
+        dosage: '200 mcg',
+        frequency: '2 puffs twice daily',
+        indication: 'Bronchial asthma maintenance'
+      }
+    ],
+    drugAllergies: ['Penicillin (cutaneous urticaria in childhood)'],
+    familyHistory: ['Mother: Atopic dermatitis & bronchial asthma', 'Father: Healthy'],
+    personalHistory: [
+      'Non-smoker',
+      'Occasional tea drinker',
+      'Software Engineer (sedentary desk job with central air conditioning)'
+    ],
+    reviewOfSystems: [
+      'Respiratory: Spasmodic dry cough, nocturnal wheeze. No hemoptysis.',
+      'Constitutional: Low-grade feverishness in evening, temp 99.4°F.',
+      'ENT: Mild post-nasal drip, no sore throat or earache.'
+    ],
+    ayushAssessment: {
+      prakriti: 'Vata-Kapha',
+      vikriti: 'Pranavaha Srotas dusti (Kaphaja Kasa)',
+      agni: 'Vishamagni (Irregular digestive fire)',
+      koshta: 'Madhyama',
+      aharaShakti: 'Madhyama',
+      vaya: 'Yuva Vaya (36 years)',
+      satmya: 'Satmya to hot beverages and spices',
+      satva: 'Pravara Satva'
+    },
+    documents: DOCUMENTS_AAKARSH,
+    timeline: [
+      {
+        id: 'time-ak-1',
+        date: '14 Sep 2026',
+        type: 'prescription',
+        title: 'Pulmonary Outpatient Consultation',
+        provider: 'Dr. Sneha Roy (City Chest & Allergy Clinic)',
+        summary: 'Review of seasonal asthma flare. Prescribed inhaled Budesonide and oral Levocetirizine + Montelukast.',
+        highlightBadge: 'Inhaler Prescribed',
+        documentId: 'doc-ak-1'
+      },
+      {
+        id: 'time-ak-2',
+        date: '10 Sep 2026',
+        type: 'lab',
+        title: 'Complete Allergy Panel & Hemogram',
+        provider: 'Metro Diagnostics & Clinical Pathology Center',
+        summary: 'Elevated Absolute Eosinophil Count (580/uL) and Serum IgE (310 IU/mL) confirming allergic diathesis.',
+        highlightBadge: 'AEC 580 Flagged',
+        documentId: 'doc-ak-2'
+      }
+    ],
+    consentGranted: true,
+    consentTimestamp: '17 Sep 2026, 09:18 AM IST',
+    consentPurpose: 'Clinical intake, OCR document analysis, and physician summary under ABDM framework.',
+    submissionStatus: 'submitted',
+    tokenNumber: 'A-15',
+    doctorNotes: 'Patient presents with persistent spasmodic dry cough for 5 days. Chest auscultation reveals bilateral mild expiratory rhonchi, clear air entry, no coarse crackles. SpO2 98% on room air.',
+    physicianConfirmedDate: undefined
+  },
+
+  // 3rd Patient: VAIBHAV UPADYEY
+  {
+    profile: {
+      id: 'MK-10484',
+      name: 'VAIBHAV UPADYEY',
+      age: 58,
+      gender: 'Male',
+      preferredLanguage: 'en',
+      abhaId: '91-7721-6543-1290',
+      contactNumber: '+91 97123 45678',
+      emergencyContact: 'Sunil Upadyey (Son) - +91 97123 45679'
+    },
+    chiefComplaint: 'Joint stiffness & chronic bilateral knee pain',
+    adaptiveAnswers: {
+      onset: 'Gradual onset over 6 months, acute exacerbation past 3 days',
+      character: 'Deep aching and throbbing during weight bearing',
+      aggravating: 'Stair climbing, prolonged standing, cold damp weather',
+      associated: ['Morning stiffness lasting ~25 mins', 'Joint crepitus', 'Mild periarticular warmth']
+    },
+    isPriorityRedFlag: false,
+    priorityReason: '',
+    existingConditions: [
+      'Bilateral Primary Knee Osteoarthritis (Kellgren-Lawrence Grade 2)',
+      'Hyperuricemia (Asymptomatic)'
+    ],
+    previousSurgeries: ['Left Inguinal Hernioplasty (2018)'],
+    currentMedications: [
+      {
+        name: 'Paracetamol',
+        dosage: '650 mg',
+        frequency: '1 tablet TDS SOS for joint pain',
+        indication: 'Analgesic'
+      },
+      {
+        name: 'Glucosamine Sulfate',
+        dosage: '1500 mg',
+        frequency: 'Once daily after lunch',
+        indication: 'Chondroprotection'
+      },
+      {
+        name: 'Allopurinol',
+        dosage: '100 mg',
+        frequency: 'Once daily after breakfast',
+        indication: 'Uric Acid Lowering'
+      }
+    ],
+    drugAllergies: ['No known drug allergies (NKDA)'],
+    familyHistory: ['Mother: Severe osteoarthritis knee with bilateral total knee replacement', 'Father: Hypertension'],
+    personalHistory: [
+      'Non-smoker',
+      'Retired school administrator',
+      'Sedentary lifestyle with morning walk when joint comfort allows'
+    ],
+    reviewOfSystems: [
+      'Musculoskeletal: Bilateral knee tenderness, medial compartment right > left, audible crepitus.',
+      'Gastrointestinal: Occasional mild dyspepsia on oral analgesic intake.',
+      'Cardiovascular: Normal heart sounds, BP 134/86 mmHg.'
+    ],
+    ayushAssessment: {
+      prakriti: 'Vata-Pitta',
+      vikriti: 'Sandhigata Vata (Asthi-Majja Dhatu imbalance)',
+      agni: 'Mandagni',
+      koshta: 'Krura (Tendency towards mild constipation)',
+      aharaShakti: 'Avara',
+      vaya: 'Vriddha Vaya (58 years)',
+      satmya: 'Vata-aggravating dry cold foods',
+      satva: 'Madhyama Satva'
+    },
+    documents: DOCUMENTS_VAIBHAV,
+    timeline: [
+      {
+        id: 'time-vb-1',
+        date: '02 Sep 2026',
+        type: 'consultation',
+        title: 'Orthopedic Digital Radiography Review',
+        provider: 'Dr. Vikramaditya Joshi (Apex Diagnostic Imaging)',
+        summary: 'Digital weight-bearing bilateral knee X-ray confirmed Grade 2 Kellgren-Lawrence medial joint narrowing.',
+        highlightBadge: 'Grade 2 OA Knee',
+        documentId: 'doc-vb-1'
+      },
+      {
+        id: 'time-vb-2',
+        date: '28 Aug 2026',
+        type: 'lab',
+        title: 'Rheumatology & Metabolic Serum Screen',
+        provider: 'Metro Diagnostics & Clinical Pathology Center',
+        summary: 'Serum uric acid 7.8 mg/dL (elevated). ESR 24 mm/hr. Rheumatoid factor negative.',
+        highlightBadge: 'Uric Acid 7.8 mg/dL',
+        documentId: 'doc-vb-2'
+      }
+    ],
+    consentGranted: true,
+    consentTimestamp: '17 Sep 2026, 09:24 AM IST',
+    consentPurpose: 'Digital intake history, radiological record extraction, and physician summary under ABDM.',
+    submissionStatus: 'submitted',
+    tokenNumber: 'A-16',
+    doctorNotes: 'Bilateral knee osteoarthritis with active medial joint line tenderness. Prescribed topical NSAID gel, continued paracetamol SOS, physical therapy referral for quadriceps strengthening.',
+    physicianConfirmedDate: undefined
+  },
+
+  // 4th Patient (Last): AKASH
+  {
+    profile: {
+      id: 'MK-10485',
+      name: 'AKASH',
+      age: 24,
+      gender: 'Male',
+      preferredLanguage: 'en',
+      abhaId: '91-2290-8812-4433',
+      contactNumber: '+91 99090 87654',
+      emergencyContact: 'Karan Verma (Brother) - +91 99090 87655'
+    },
+    chiefComplaint: 'Acute epigastric pain & acidity after street food',
+    adaptiveAnswers: {
+      onset: '8 hours ago (overnight after street dinner)',
+      character: 'Sharp burning retrosternal & epigastric pain',
+      aggravating: 'Lying flat, empty stomach, citrus / spicy foods',
+      associated: ['Sour acid regurgitation', 'Mild nausea', 'Abdominal bloating']
+    },
+    isPriorityRedFlag: false,
+    priorityReason: '',
+    existingConditions: ['Gastroesophageal Reflux Disease (GERD)', 'Mild Gastritis'],
+    previousSurgeries: ['None reported'],
+    currentMedications: [
+      {
+        name: 'Pantoprazole',
+        dosage: '40 mg',
+        frequency: 'Once daily 30 mins before breakfast',
+        indication: 'Gastric acid suppression'
+      },
+      {
+        name: 'Magaldrate + Simethicone Gel',
+        dosage: '10 mL',
+        frequency: 'As needed after meals SOS',
+        indication: 'Antacid / Anti-gas'
+      }
+    ],
+    drugAllergies: ['Sulfonamides (erythematous skin rash)'],
+    familyHistory: ['Father: Peptic ulcer disease', 'Mother: Healthy'],
+    personalHistory: [
+      'College undergraduate student',
+      'Irregular meal timings and frequent late-night street food',
+      'Non-smoker, drinks coffee 2-3 cups daily'
+    ],
+    reviewOfSystems: [
+      'Gastrointestinal: Epigastric burning and acid reflux. No hematemesis, melena, or dysphagia.',
+      'General: Alert, conscious, oriented, no systemic toxemia.',
+      'Cardiovascular: Normal pulse 82/min, BP 118/76 mmHg. No exertional chest pain.'
+    ],
+    ayushAssessment: {
+      prakriti: 'Pitta Predominant',
+      vikriti: 'Amlapitta (Ushna-Tikshna Guna excess of Pachaka Pitta)',
+      agni: 'Tikshnagni (Hyper-metabolic / intense digestive fire)',
+      koshta: 'Mrudu',
+      aharaShakti: 'Pravara',
+      vaya: 'Bala-Yuva Vaya (24 years)',
+      satmya: 'Katu-Amla-Lavana Ahara (Spicy/fried food exposure)',
+      satva: 'Madhyama Satva'
+    },
+    documents: DOCUMENTS_AKASH,
+    timeline: [
+      {
+        id: 'time-aks-1',
+        date: '18 Sep 2026',
+        type: 'consultation',
+        title: 'Emergency Medical OPD Intake',
+        provider: 'Dr. R. K. Patel (Civil Hospital Emergency Care)',
+        summary: 'Acute epigastric burning following street food. Ultrasound and serum enzymes ruled out acute surgical abdomen.',
+        highlightBadge: 'Acute Gastritis Flare',
+        documentId: 'doc-akash-1'
+      },
+      {
+        id: 'time-aks-2',
+        date: '18 Sep 2026',
+        type: 'lab',
+        title: 'Emergency Biochemistry Screen',
+        provider: 'Civil Hospital Emergency Biochemistry Laboratory',
+        summary: 'Normal serum amylase (52 U/L) and lipase (28 U/L), normal hepatic enzymes.',
+        highlightBadge: 'Amylase Normal',
+        documentId: 'doc-akash-2'
+      }
+    ],
+    consentGranted: true,
+    consentTimestamp: '17 Sep 2026, 09:30 AM IST',
+    consentPurpose: 'Emergency intake triaging, document scanning, and structured case synthesis under ABDM.',
+    submissionStatus: 'submitted',
+    tokenNumber: 'A-17',
+    doctorNotes: 'Acute gastritis / Amlapitta flare following dietary indiscretion. Abdomen soft, non-tender on deep palpation, normal bowel sounds. Administered antacid oral suspension and advised 14-day PPI course with bland diet.',
+    physicianConfirmedDate: undefined
+  }
+];
+
+export const INITIAL_DEMO_PATIENT: PatientCase = DEMO_PATIENT_CASES[0];
 
 export const OTHER_QUEUE_PATIENTS: Array<{
   id: string;
@@ -268,7 +839,7 @@ export const OTHER_QUEUE_PATIENTS: Array<{
 }> = [
   {
     id: 'MK-10482',
-    name: 'Rahul Patel',
+    name: 'YUG SOLANKI',
     age: 42,
     gender: 'Male',
     complaint: 'Chest discomfort (Exertional pressure)',
@@ -278,9 +849,9 @@ export const OTHER_QUEUE_PATIENTS: Array<{
   },
   {
     id: 'MK-10483',
-    name: 'Sunita Rao',
+    name: 'AAKARSH DUBEY',
     age: 36,
-    gender: 'Female',
+    gender: 'Male',
     complaint: 'Persistent dry cough & low fever (5 days)',
     status: 'Ready',
     timeWaiting: '12 mins ago',
@@ -288,7 +859,7 @@ export const OTHER_QUEUE_PATIENTS: Array<{
   },
   {
     id: 'MK-10484',
-    name: 'Amit Verma',
+    name: 'VAIBHAV UPADYEY',
     age: 58,
     gender: 'Male',
     complaint: 'Joint stiffness & chronic knee pain',
@@ -298,10 +869,10 @@ export const OTHER_QUEUE_PATIENTS: Array<{
   },
   {
     id: 'MK-10485',
-    name: 'Kavita Dave',
-    age: 29,
-    gender: 'Female',
-    complaint: 'Abdominal cramps following food intake',
+    name: 'AKASH',
+    age: 24,
+    gender: 'Male',
+    complaint: 'Acute epigastric pain & acidity after street food',
     status: 'In Intake',
     timeWaiting: '2 mins ago',
     token: 'A-17'
@@ -310,7 +881,7 @@ export const OTHER_QUEUE_PATIENTS: Array<{
 
 export const TRANSLATIONS = {
   en: {
-    appTitle: 'MediKiosk',
+    appTitle: 'MediVedah',
     appSubtitle: 'AI-assisted clinical history before consultation',
     startConsultation: 'Start Consultation',
     selectLanguage: 'Select Language',
@@ -328,18 +899,18 @@ export const TRANSLATIONS = {
     skip: 'Skip this step',
     resetDemo: 'Reset Demo Data',
     prototypeNotice: 'Prototype / Fictional Demo Data Only',
-    rolePatient: 'Patient Kiosk',
+    rolePatient: 'Patient Dashboard',
     roleDoctor: 'Doctor Dashboard',
     
     // Welcome & Identification
-    welcomeGreeting: 'Welcome to MediKiosk Digital Intake',
+    welcomeGreeting: 'Welcome to MediVedah Digital Intake',
     welcomeDesc: 'Please take a few moments to share your health details and scan past prescriptions before seeing the doctor. This saves consultation time and ensures accurate care.',
     patientIdTitle: 'Patient Identification',
     patientIdSubtitle: 'Select how you would like to begin your session. (No real Aadhaar collected in prototype)',
     useAbha: 'Verify with ABHA ID',
     useAadhaar: 'Verify with Aadhaar OTP (Demo)',
     useNewPatient: 'Register as New Patient',
-    useExistingPatient: 'Quick Demo: Load Rahul Patel (MK-10482)',
+    useExistingPatient: 'Quick Demo: Load Yug Solanki (MK-10482)',
     
     // Consent
     consentTitle: 'Consent & Privacy Reassurance',
@@ -387,9 +958,9 @@ export const TRANSLATIONS = {
     
     // Red flag
     redFlagTitle: 'Priority Clinical Attention Required',
-    redFlagMessage: 'Your responses indicate symptoms that may require immediate clinical attention. Please remain at the kiosk. A member of the clinical team has been notified.',
-    redFlagDisclaimer: 'Clinical Safety Notice: MediKiosk does NOT provide an AI diagnosis. This is an automated priority safety escalation for prompt physician evaluation.',
-    redFlagStaffNotified: 'OPD Nursing Desk alerted for Patient Token A-14 (Rahul Patel)',
+    redFlagMessage: 'Your responses indicate symptoms that may require immediate clinical attention. Please remain seated here. A member of the clinical team has been notified.',
+    redFlagDisclaimer: 'Clinical Safety Notice: MediVedah does NOT provide an AI diagnosis. This is an automated priority safety escalation for prompt physician evaluation.',
+    redFlagStaffNotified: 'OPD Nursing Desk alerted for Patient Token A-14 (Yug Solanki)',
     
     // History
     medHistoryTitle: 'Your Past Medical History',
@@ -424,7 +995,7 @@ export const TRANSLATIONS = {
   },
   
   hi: {
-    appTitle: 'मेडीकिओस्क (MediKiosk)',
+    appTitle: 'मेडीवेदः (MediVedah)',
     appSubtitle: 'डॉक्टर से परामर्श से पहले एआई-सहायता प्राप्त केस-टेकिंग',
     startConsultation: 'परामर्श शुरू करें',
     selectLanguage: 'भाषा चुनें',
@@ -442,17 +1013,17 @@ export const TRANSLATIONS = {
     skip: 'यह चरण छोड़ें',
     resetDemo: 'डेमो डेटा रीसेट करें',
     prototypeNotice: 'प्रोटोटाइप / केवल काल्पनिक डेमो डेटा',
-    rolePatient: 'मरीज़ कियोस्क मोड',
+    rolePatient: 'मरीज़ डैशबोर्ड',
     roleDoctor: 'डॉक्टर डैशबोर्ड',
     
-    welcomeGreeting: 'मेडीकिओस्क डिजिटल इनटेक में आपका स्वागत है',
+    welcomeGreeting: 'मेडीवेदः डिजिटल इनटेक में आपका स्वागत है',
     welcomeDesc: 'डॉक्टर से मिलने से पहले कृपया अपनी स्वास्थ्य जानकारी दर्ज करें और पिछली पर्चियां स्कैन करें। इससे समय की बचत होती है और सटीक इलाज सुनिश्चित होता है।',
     patientIdTitle: 'मरीज़ की पहचान',
     patientIdSubtitle: 'अपना सत्र शुरू करने का तरीका चुनें। (प्रोटोटाइप में कोई वास्तविक आधार नहीं लिया जाता)',
     useAbha: 'आभा (ABHA) आईडी से सत्यापित करें',
     useAadhaar: 'आधार ओटीपी से सत्यापित करें (डेमो)',
     useNewPatient: 'नए मरीज़ के रूप में पंजीकरण',
-    useExistingPatient: 'त्वरित डेमो: राहुल पटेल (MK-10482) लोड करें',
+    useExistingPatient: 'त्वरित डेमो: युग सोलंकी (MK-10482) लोड करें',
     
     consentTitle: 'सहमति और गोपनीयता आश्वासन',
     consentSubtitle: 'आपका स्वास्थ्य डेटा सुरक्षित, एन्क्रिप्टेड है और केवल आपकी देखभाल करने वाले डॉक्टरों के साथ साझा किया जाएगा।',
@@ -494,9 +1065,9 @@ export const TRANSLATIONS = {
     qAssociated: 'क्या कोई अन्य लक्षण भी महसूस हो रहा है?',
     
     redFlagTitle: 'प्राथमिकता नैदानिक ध्यान आवश्यक',
-    redFlagMessage: 'आपके उत्तर उन लक्षणों की ओर संकेत करते हैं जिन पर तत्काल डॉक्टर का ध्यान आवश्यक है। कृपया कियोस्क के पास ही रहें। क्लिनिकल टीम को सूचित कर दिया गया है।',
-    redFlagDisclaimer: 'सुरक्षा सूचना: मेडीकिओस्क कोई कृत्रिम बुद्धिमत्ता रोग निदान (Diagnosis) नहीं देता। यह त्वरित डॉक्टर मूल्यांकन के लिए स्वचालित सुरक्षा अलर्ट है।',
-    redFlagStaffNotified: 'मरीज़ टोकन A-14 (राहुल पटेल) के लिए ओपीडी नर्सिंग डेस्क को अलर्ट भेजा गया',
+    redFlagMessage: 'आपके उत्तर उन लक्षणों की ओर संकेत करते हैं जिन पर तत्काल डॉक्टर का ध्यान आवश्यक है। कृपया यहीं आराम से बैठें। क्लिनिकल टीम को सूचित कर दिया गया है।',
+    redFlagDisclaimer: 'सुरक्षा सूचना: मेडीवेदः कोई कृत्रिम बुद्धिमत्ता रोग निदान (Diagnosis) नहीं देता। यह त्वरित डॉक्टर मूल्यांकन के लिए स्वचालित सुरक्षा अलर्ट है।',
+    redFlagStaffNotified: 'मरीज़ टोकन A-14 (युग सोलंकी) के लिए ओपीडी नर्सिंग डेस्क को अलर्ट भेजा गया',
     
     medHistoryTitle: 'आपका पिछला मेडिकल इतिहास',
     medHistorySubtitle: 'पुरानी बीमारियां और दवाएं डॉक्टर को सुरक्षित उपचार तय करने में मदद करती हैं।',
@@ -527,7 +1098,7 @@ export const TRANSLATIONS = {
   },
   
   gu: {
-    appTitle: 'મેડિકિઓસ્ક (MediKiosk)',
+    appTitle: 'મેડિવેદઃ (MediVedah)',
     appSubtitle: 'ડોક્ટરની મુલાકાત પહેલાં એઆઈ-સહાયિત કેસ-ટેકિંગ',
     startConsultation: 'તપાસ શરૂ કરો',
     selectLanguage: 'ભાષા પસંદ કરો',
@@ -545,17 +1116,17 @@ export const TRANSLATIONS = {
     skip: 'આ પગલું છોડો',
     resetDemo: 'ડેમો ડેટા રીસેટ કરો',
     prototypeNotice: 'પ્રોટોટાઇપ / ફક્ત કાલ્પનિક ડેમો ડેટા',
-    rolePatient: 'દર્દી કિઓસ્ક મોડ',
+    rolePatient: 'દર્દી ડૅશબોર્ડ',
     roleDoctor: 'ડૉક્ટર ડૅશબોર્ડ',
     
-    welcomeGreeting: 'મેડિકિઓસ્ક ડિજિટલ ઇનટેકમાં આપનું સ્વાગત છે',
+    welcomeGreeting: 'મેડિવેદઃ ડિજિટલ ઇનટેકમાં આપનું સ્વાગત છે',
     welcomeDesc: 'ડૉક્ટરને મળતાં પહેલાં આપની તબિયતની વિગતો આપો અને જૂની દવાઓની ચિઠ્ઠીઓ સ્કેન કરો. આનાથી સમય બચે છે અને યોગ્ય સારવાર મળે છે.',
     patientIdTitle: 'દર્દીની ઓળખ',
     patientIdSubtitle: 'આપનું સત્ર શરૂ કરવાની પદ્ધતિ પસંદ કરો. (પ્રોટોટાઇપમાં કોઈ વાસ્તવિક આધાર લેવામાં આવતો નથી)',
     useAbha: 'આભા (ABHA) આઈડી દ્વારા ચકાસો',
     useAadhaar: 'આધાર ઓટીપી દ્વારા ચકાસો (ડેમો)',
     useNewPatient: 'નવા દર્દી તરીકે નોંધણી',
-    useExistingPatient: 'ઝડપી ડેમો: રાહુલ પટેલ (MK-10482) લોડ કરો',
+    useExistingPatient: 'ઝડપી ડેમો: યુગ સોલંકી (MK-10482) લોડ કરો',
     
     consentTitle: 'સંમતિ અને ગોપનીયતા ખાતરી',
     consentSubtitle: 'આપનો સ્વાસ્થ્ય ડેટા સુરક્ષિત, એન્ક્રિપ્ટેડ છે અને માત્ર આપના ડૉક્ટર સાથે શેર થશે.',
@@ -597,9 +1168,9 @@ export const TRANSLATIONS = {
     qAssociated: 'સાથે અન્ય કોઈ લક્ષણ અનુભવાય છે?',
     
     redFlagTitle: 'તાત્કાલિક ક્લિનિકલ ધ્યાનની જરૂરિયાત',
-    redFlagMessage: 'આપના જવાબો એવા લક્ષણો દર્શાવે છે જેના માટે તાત્કાલિક ડૉક્ટરનું ધ્યાન જરૂરી છે. કૃપા કરીને કિઓસ્ક પાસે જ રહો. ક્લિનિકલ ટીમને જાણ કરવામાં આવી છે.',
-    redFlagDisclaimer: 'સુરક્ષા સૂચના: મેડિકિઓસ્ક કોઈ એઆઈ રોગ નિદાન આપતું નથી. આ તાત્કાલિક તબીબી મૂલ્યાંકન માટે સુરક્ષા ચેતવણી છે.',
-    redFlagStaffNotified: 'દર્દી ટોકન A-14 (રાહુલ પટેલ) માટે નર્સિંગ ડેસ્કને એલર્ટ મોકલાયેલ છે',
+    redFlagMessage: 'આપના જવાબો એવા લક્ષણો દર્શાવે છે જેના માટે તાત્કાલિક ડૉક્ટરનું ધ્યાન જરૂરી છે. કૃપા કરીને અહીં જ આરામથી બેસો. ક્લિનિકલ ટીમને જાણ કરવામાં આવી છે.',
+    redFlagDisclaimer: 'સુરક્ષા સૂચના: મેડિવેદઃ કોઈ એઆઈ રોગ નિદાન આપતું નથી. આ તાત્કાલિક તબીબી મૂલ્યાંકન માટે સુરક્ષા ચેતવણી છે.',
+    redFlagStaffNotified: 'દર્દી ટોકન A-14 (યુગ સોલંકી) માટે નર્સિંગ ડેસ્કને એલર્ટ મોકલાયેલ છે',
     
     medHistoryTitle: 'આપનો ભૂતકાળનો તબીબી ઇતિહાસ',
     medHistorySubtitle: 'જૂની બીમારીઓ અને નિયમિત દવાઓ ડૉક્ટરને સુરક્ષિત સારવાર નક્કી કરવામાં મદદ કરે છે.',

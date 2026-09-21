@@ -51,16 +51,16 @@ export const IdentificationScreen: React.FC<IdentificationScreenProps> = ({
   };
 
   const handleProceed = () => {
-    // In accordance with prototype rules, loads fictional demo patient Rahul Patel MK-10482
+    // In accordance with prototype rules, loads fictional demo patient Yug Solanki MK-10482
     onSelectPatient({
       id: 'MK-10482',
-      name: 'Rahul Patel',
+      name: 'YUG SOLANKI',
       age: 42,
       gender: 'Male',
       preferredLanguage: language,
       abhaId: '91-4820-1928-3019',
       contactNumber: '+91 98250 14820',
-      emergencyContact: 'Meera Patel (+91 98250 14821)'
+      emergencyContact: 'Pooja Solanki (+91 98250 14821)'
     });
   };
 
@@ -104,7 +104,7 @@ export const IdentificationScreen: React.FC<IdentificationScreenProps> = ({
         <div className="p-3.5 rounded-xl bg-amber-50/80 border border-amber-200/80 flex items-start gap-3 mb-6">
           <ShieldAlert className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
           <div className="text-xs text-amber-900 leading-relaxed">
-            <span className="font-bold">SIH Jury Sandbox Protocol:</span> Real Aadhaar or national biometric identifiers are strictly NOT collected or transmitted. For testing and demonstration, selecting any card pre-loads the fictional patient profile (<strong>Rahul Patel, 42M, ID: MK-10482</strong>).
+            <span className="font-bold">SIH Jury Sandbox Protocol:</span> Real Aadhaar or national biometric identifiers are strictly NOT collected or transmitted. For testing and demonstration, selecting any card pre-loads the fictional patient profile (<strong>YUG SOLANKI, 42M, ID: MK-10482</strong>).
           </div>
         </div>
 
@@ -132,7 +132,7 @@ export const IdentificationScreen: React.FC<IdentificationScreenProps> = ({
               Quick Demo Patient
             </h3>
             <p className="text-xs text-slate-600 mt-1">
-              Rahul Patel (42M) • History of HTN, Type 2 Diabetes, Chest discomfort.
+              YUG SOLANKI (42M) • History of HTN, Type 2 Diabetes, Chest discomfort.
             </p>
             <span className="inline-block mt-3 text-[11px] font-bold text-teal-700 bg-teal-100/70 px-2 py-0.5 rounded">
               Recommended for presentation

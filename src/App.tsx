@@ -38,7 +38,7 @@ import { stopSpeaking } from './utils/speech';
 export default function App() {
   const [mode, setMode] = useState<AppMode>('patient');
   const [currentStep, setCurrentStep] = useState<PatientStep>('welcome');
-  const [language, setLanguage] = useState<AppLanguage>('gu');
+  const [language, setLanguage] = useState<AppLanguage>('en');
   const [patientCase, setPatientCase] = useState<PatientCase>({ ...INITIAL_DEMO_PATIENT });
   const [activeDocument, setActiveDocument] = useState<MedicalDocument>(DEMO_DOCUMENTS[0]);
   const [viewerModalDoc, setViewerModalDoc] = useState<MedicalDocument | null>(null);
@@ -73,7 +73,7 @@ export default function App() {
     setPatientCase({ ...INITIAL_DEMO_PATIENT });
     setCurrentStep('welcome');
     setMode('patient');
-    setLanguage('gu');
+    setLanguage('en');
   };
 
   const handleQuickDemoLoad = () => {
@@ -315,7 +315,7 @@ export default function App() {
                 language={language}
                 patientCase={patientCase}
                 onOpenDoctorDashboard={() => setMode('doctor')}
-                onStartNewKioskSession={() => setCurrentStep('welcome')}
+                onStartNewSession={() => setCurrentStep('welcome')}
               />
             )}
           </>
@@ -328,7 +328,7 @@ export default function App() {
             }
             onOpenDocumentModal={(doc) => setViewerModalDoc(doc)}
             onOpenConsentModal={() => setShowConsentModal(true)}
-            onSwitchToPatientKiosk={() => setMode('patient')}
+            onSwitchToPatientDashboard={() => setMode('patient')}
           />
         )}
       </main>

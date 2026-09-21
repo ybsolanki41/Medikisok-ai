@@ -22,14 +22,14 @@ interface SubmissionSuccessScreenProps {
   language: AppLanguage;
   patientCase: PatientCase;
   onOpenDoctorDashboard: () => void;
-  onStartNewKioskSession: () => void;
+  onStartNewSession: () => void;
 }
 
 export const SubmissionSuccessScreen: React.FC<SubmissionSuccessScreenProps> = ({
   language,
   patientCase,
   onOpenDoctorDashboard,
-  onStartNewKioskSession,
+  onStartNewSession,
 }) => {
   const t = TRANSLATIONS[language];
 
@@ -100,13 +100,13 @@ export const SubmissionSuccessScreen: React.FC<SubmissionSuccessScreenProps> = (
           </button>
 
           <button
-            id="new-kiosk-session-btn"
+            id="new-session-btn"
             type="button"
-            onClick={onStartNewKioskSession}
+            onClick={onStartNewSession}
             className="w-full py-3 px-5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
           >
             <RotateCcw className="w-4 h-4 text-slate-500" />
-            <span>Return to Kiosk Welcome Screen</span>
+            <span>Return to Welcome Screen</span>
           </button>
         </div>
       </div>

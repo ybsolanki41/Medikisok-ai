@@ -145,7 +145,7 @@ export const DocumentScanUploadScreen: React.FC<DocumentScanUploadScreenProps> =
               }`}
             >
               <Camera className="w-3.5 h-3.5" />
-              <span>Kiosk Scanner Viewfinder</span>
+              <span>Digital Scanner Viewfinder</span>
             </button>
 
             <button

@@ -39,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-lg sm:text-xl tracking-tight text-slate-900">
-                  MediKiosk
+                  MediVedah
                 </span>
                 <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-teal-50 text-teal-700 border border-teal-200/60">
                   SIH 26047
@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Center Mode Switcher - Prototype Mandate */}
           <div className="flex items-center bg-slate-100/90 p-1 rounded-xl border border-slate-200">
             <button
-              id="kiosk-mode-btn"
+              id="patient-mode-btn"
               type="button"
               onClick={() => onModeChange('patient')}
               className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
